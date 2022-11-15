@@ -5,6 +5,10 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kebernetes.io/use-regex: 'true'
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+    nginx.ingress.kubernetes.io/cors-allow-methods: "PUT, GET, POST"
+    nginx.ingress.kubernetes.io/cors-allow-origin: "*"
+    nginx.ingress.kubernetes.io/cors-allow-credentials: "true"
   labels:
     name: ingress-service
 spec:
@@ -55,9 +59,9 @@ spec:
             port:
               number: 3001          
       - pathType: Prefix
-        path: "/"
+        path: "/socket.io"
         backend:
           service:
-            name: mongo-express-clusterip-service
+            name: exam-challenge-service-clusterip-service
             port: 
-              number: 8081
+              number: 3005
